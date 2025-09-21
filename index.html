@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Under Construction</title>
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg: #0b0d10;
+      --fg: #e6e8eb;
+      --muted:#98a2b3;
+      --card:#111418;
+      --accent:#62a0ff;
+      --ring: rgba(98,160,255,.25);
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f6f7f9; --fg:#0c1116; --muted:#5b6775; --card:#ffffff; --accent:#1769ff; --ring:rgba(23,105,255,.15); }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(40rem 40rem at 10% 10%, var(--ring), transparent 60%),
+        radial-gradient(50rem 50rem at 90% 20%, var(--ring), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg));
+      color:var(--fg);
+      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    }
+    .card{
+      width:min(680px, 92vw);
+      background:var(--card);
+      border:1px solid rgba(120,130,140,.15);
+      border-radius:18px;
+      padding:28px 24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.12);
+      text-align:center;
+      animation:pop .35s ease-out;
+    }
+    @keyframes pop{ from{ transform:scale(.98); opacity:.0 } to{ transform:scale(1); opacity:1 } }
+    .badge{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.35rem .7rem; border-radius:999px;
+      background:rgba(98,160,255,.12); color:var(--accent);
+      font-weight:600; font-size:.9rem; letter-spacing:.2px;
+    }
+    h1{margin:.75rem 0 .35rem; font-size:clamp(1.6rem, 3vw, 2rem);}
+    p{margin:.25rem 0 .75rem; color:var(--muted)}
+    .row{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:.75rem}
+    .pill{
+      padding:.45rem .8rem; border-radius:999px; border:1px dashed rgba(120,130,140,.35);
+      color:var(--muted); font-size:.9rem;
+    }
+    .footer{
+      margin-top:1rem; font-size:.85rem; color:var(--muted)
+    }
+    .dot{display:inline-block; width:.5rem; height:.5rem; background:var(--accent); border-radius:50%; box-shadow:0 0 0 .35rem var(--ring); margin-right:.5rem; animation:pulse 1.6s infinite;}
+    @keyframes pulse{ 0%{ box-shadow:0 0 0 .35rem var(--ring); } 70%{ box-shadow:0 0 0 1.1rem rgba(98,160,255,0); } 100%{ box-shadow:0 0 0 .35rem var(--ring); } }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-label="Site status">
+    <div class="badge" aria-live="polite"><span class="dot" aria-hidden="true"></span>Under Construction</div>
+    <h1>We’re building this site</h1>
+    <p>This domain is alive, just not busy yet. Check back soon.</p>
+
+    <div class="row" aria-hidden="true">
+      <div class="pill">Static hosting</div>
+      <div class="pill">Cloudflare DNS</div>
+      <div class="pill">HTTPS</div>
+    </div>
+
+    <div class="footer">
+      © <span id="y"></span> • All rights reserved
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
