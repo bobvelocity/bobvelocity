@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keith’s Web Toolkit</title>
+  <style>
+    :root{
+      --bg:#0e0f12;
+      --panel:#15171c;
+      --text:#e8e8ea;
+      --muted:#9aa0a6;
+      --accent:#6ea8ff;
+      --ring: rgba(110,168,255,0.35);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:radial-gradient(1200px 800px at 70% -10%, #1c1f27 0%, #0e0f12 55%) no-repeat, var(--bg);
+      color:var(--text); font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .wrap{width:100%; max-width:900px}
+    header{
+      text-align:center; margin-bottom:22px;
+    }
+    h1{
+      margin:0 0 6px; font-weight:700; letter-spacing:.3px; font-size:28px;
+    }
+    p.sub{margin:0; color:var(--muted); font-size:14px}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
+      backdrop-filter:saturate(120%) blur(4px);
+    }
+    .grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    a.tool{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      text-decoration:none; color:var(--text); background:var(--panel);
+      border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px 16px;
+      transition:transform .08s ease, border-color .12s ease, box-shadow .12s ease;
+      box-shadow:0 6px 14px rgba(0,0,0,.25);
+    }
+    a.tool:hover{ transform:translateY(-1px); border-color:var(--accent); box-shadow:0 8px 18px var(--ring); }
+    .lbl{font-weight:600; letter-spacing:.2px}
+    .hint{color:var(--muted); font-size:12px}
+    .right{opacity:.8}
+    footer{margin-top:14px; text-align:center; color:var(--muted); font-size:12px}
+    .row{display:flex; gap:10px; justify-content:center; margin-top:10px}
+    .home{
+      display:inline-block; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02); color:var(--text); text-decoration:none;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#eef1f6; --panel:#ffffff; --text:#16181d; --muted:#5b6572; --accent:#2c6bed; --ring:rgba(44,107,237,.25); }
+      body{ background:radial-gradient(1200px 800px at 70% -10%, #f3f5f9 0%, #eef1f6 55%) no-repeat, var(--bg); }
+      .card{ border-color:rgba(0,0,0,.06); }
+      a.tool{ border-color:rgba(0,0,0,.08); box-shadow:0 6px 14px rgba(0,0,0,.08); }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>Keith’s Web Toolkit</h1>
+      <p class="sub">Fast links to your everyday net tools — sleek and simple.</p>
+    </header>
+
+    <section class="card">
+      <div class="grid">
+        <a class="tool" href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">SSL Test</div>
+            <div class="hint">Qualys SSL Labs</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://dnschecker.org/all-dns-records-of-domain.php" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">DNS Lookup</div>
+            <div class="hint">A/AAAA, MX, TXT, CNAME…</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://who.is/" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">WHOIS</div>
+            <div class="hint">Domain/registrant info</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://ipinfo.io/" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">IP Check</div>
+            <div class="hint">Your public IP & geo</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://tools.keycdn.com/ping" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">Ping</div>
+            <div class="hint">Any host from multiple regions</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://tools.keycdn.com/traceroute" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">Traceroute</div>
+            <div class="hint">Path to a host</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://fast.com/" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">Speed Test</div>
+            <div class="hint">Netflix Fast.com</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+
+        <a class="tool" href="https://dns.google/" target="_blank" rel="noopener">
+          <span>
+            <div class="lbl">Google DNS</div>
+            <div class="hint">Quick record viewer</div>
+          </span>
+          <span class="right">↗</span>
+        </a>
+      </div>
+
+      <div class="row">
+        <a class="home" href="/" title="Back to Home">← Back to Home</a>
+      </div>
+    </section>
+
+    <footer>Made for Keith • Minimal, fast, bookmarkable</footer>
+  </main>
+</body>
+</html>
