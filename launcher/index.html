@@ -1,150 +1,125 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Keith’s Web Toolkit</title>
-  <style>
-    :root{
-      --bg:#0e0f12;
-      --panel:#15171c;
-      --text:#e8e8ea;
-      --muted:#9aa0a6;
-      --accent:#6ea8ff;
-      --ring: rgba(110,168,255,0.35);
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-      --radius: 18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:radial-gradient(1200px 800px at 70% -10%, #1c1f27 0%, #0e0f12 55%) no-repeat, var(--bg);
-      color:var(--text); font:16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .wrap{width:100%; max-width:900px}
-    header{
-      text-align:center; margin-bottom:22px;
-    }
-    h1{
-      margin:0 0 6px; font-weight:700; letter-spacing:.3px; font-size:28px;
-    }
-    p.sub{margin:0; color:var(--muted); font-size:14px}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00));
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius); padding:22px; box-shadow:var(--shadow);
-      backdrop-filter:saturate(120%) blur(4px);
-    }
-    .grid{
-      display:grid; gap:14px;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    }
-    a.tool{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      text-decoration:none; color:var(--text); background:var(--panel);
-      border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px 16px;
-      transition:transform .08s ease, border-color .12s ease, box-shadow .12s ease;
-      box-shadow:0 6px 14px rgba(0,0,0,.25);
-    }
-    a.tool:hover{ transform:translateY(-1px); border-color:var(--accent); box-shadow:0 8px 18px var(--ring); }
-    .lbl{font-weight:600; letter-spacing:.2px}
-    .hint{color:var(--muted); font-size:12px}
-    .right{opacity:.8}
-    footer{margin-top:14px; text-align:center; color:var(--muted); font-size:12px}
-    .row{display:flex; gap:10px; justify-content:center; margin-top:10px}
-    .home{
-      display:inline-block; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.02); color:var(--text); text-decoration:none;
-    }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#eef1f6; --panel:#ffffff; --text:#16181d; --muted:#5b6572; --accent:#2c6bed; --ring:rgba(44,107,237,.25); }
-      body{ background:radial-gradient(1200px 800px at 70% -10%, #f3f5f9 0%, #eef1f6 55%) no-repeat, var(--bg); }
-      .card{ border-color:rgba(0,0,0,.06); }
-      a.tool{ border-color:rgba(0,0,0,.08); box-shadow:0 6px 14px rgba(0,0,0,.08); }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Keith’s Web Toolkit</title>
+<style>
+  :root{
+    --bg:#0e0f12; --panel:#15171c; --text:#e9eaed; --muted:#9aa0a6; --ring:rgba(110,168,255,.35);
+    --border:rgba(255,255,255,.06); --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; background:radial-gradient(1200px 800px at 70% -10%, #1c1f27 0%, #0e0f12 55%) no-repeat, var(--bg);
+    color:var(--text); font:16px/1.5 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+    padding:28px; display:flex; justify-content:center;
+  }
+  .wrap{width:100%; max-width:1100px}
+  header{margin:0 0 18px; text-align:center}
+  h1{margin:0 0 6px; font-size:28px; letter-spacing:.2px}
+  .sub{margin:0; color:var(--muted); font-size:14px}
+  .grid{
+    display:grid; gap:18px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 980px){ .grid{grid-template-columns: 1fr 1fr;} }
+  @media (max-width: 640px){ .grid{grid-template-columns: 1fr;} }
+
+  .col{
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:0 10px 30px rgba(0,0,0,.35); padding:18px;
+  }
+  .h{
+    display:flex; align-items:center; gap:10px; margin:2px 0 10px;
+    font-weight:700; letter-spacing:.2px;
+  }
+  .h .dot{font-size:18px}
+  ul{list-style:none; margin:0; padding:0}
+  li+li{border-top:1px dashed var(--border)}
+  a{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 6px; text-decoration:none; color:var(--text);
+    transition:transform .08s ease, color .1s ease, border-color .1s ease;
+  }
+  a:hover{ transform:translateY(-1px); color:#cfe0ff; }
+  .desc{color:var(--muted); font-size:12px}
+  .arrow{opacity:.8}
+  footer{margin:14px 0 0; text-align:center; color:var(--muted); font-size:12px}
+  .home{
+    display:inline-block; margin-top:10px; padding:8px 10px; border-radius:10px;
+    border:1px solid var(--border); color:var(--text); text-decoration:none;
+    background:rgba(255,255,255,.02);
+  }
+</style>
 </head>
 <body>
-  <main class="wrap">
+  <div class="wrap">
     <header>
       <h1>Keith’s Web Toolkit</h1>
-      <p class="sub">Fast links to your everyday net tools — sleek and simple.</p>
+      <p class="sub">Your everyday network, privacy, and diagnostics links — tidy and fast.</p>
     </header>
 
-    <section class="card">
-      <div class="grid">
-        <a class="tool" href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">SSL Test</div>
-            <div class="hint">Qualys SSL Labs</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://dnschecker.org/all-dns-records-of-domain.php" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">DNS Lookup</div>
-            <div class="hint">A/AAAA, MX, TXT, CNAME…</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://who.is/" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">WHOIS</div>
-            <div class="hint">Domain/registrant info</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://ipinfo.io/" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">IP Check</div>
-            <div class="hint">Your public IP & geo</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://tools.keycdn.com/ping" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">Ping</div>
-            <div class="hint">Any host from multiple regions</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://tools.keycdn.com/traceroute" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">Traceroute</div>
-            <div class="hint">Path to a host</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://fast.com/" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">Speed Test</div>
-            <div class="hint">Netflix Fast.com</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
-
-        <a class="tool" href="https://dns.google/" target="_blank" rel="noopener">
-          <span>
-            <div class="lbl">Google DNS</div>
-            <div class="hint">Quick record viewer</div>
-          </span>
-          <span class="right">↗</span>
-        </a>
+    <section class="grid">
+      <!-- Network & Connectivity -->
+      <div class="col">
+        <div class="h"><span class="dot">🌐</span><span>Network & Connectivity</span></div>
+        <ul>
+          <li><a href="https://fast.com/" target="_blank" rel="noopener">
+            <span><strong>fast.com</strong><div class="desc">Netflix speed test — very simple</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://speed.cloudflare.com/" target="_blank" rel="noopener">
+            <span><strong>Cloudflare Speed Test</strong><div class="desc">Latency, jitter, routing info</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://tools.keycdn.com/ping" target="_blank" rel="noopener">
+            <span><strong>Ping Test</strong><div class="desc">Quick latency & packet loss</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://browserleaks.com/ip" target="_blank" rel="noopener">
+            <span><strong>BrowserLeaks IP</strong><div class="desc">Public IPs and headers your browser exposes</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://test-ipv6.com/" target="_blank" rel="noopener">
+            <span><strong>Test IPv6</strong><div class="desc">Detect v6 capability & readiness</div></span><span class="arrow">↗</span></a></li>
+        </ul>
       </div>
 
-      <div class="row">
-        <a class="home" href="/" title="Back to Home">← Back to Home</a>
+      <!-- Privacy & Security -->
+      <div class="col">
+        <div class="h"><span class="dot">🔒</span><span>Privacy & Security</span></div>
+        <ul>
+          <li><a href="https://www.dnsleaktest.com/" target="_blank" rel="noopener">
+            <span><strong>DNS Leak Test</strong><div class="desc">Basic or extended DNS resolver check</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://ipleak.net/" target="_blank" rel="noopener">
+            <span><strong>IPLeak.net</strong><div class="desc">IP, DNS & WebRTC leak test</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener">
+            <span><strong>Have I Been Pwned</strong><div class="desc">Check if your email appeared in a breach</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://emailrep.io/" target="_blank" rel="noopener">
+            <span><strong>EmailRep.io</strong><div class="desc">Reputation & risk of any email address</div></span><span class="arrow">↗</span></a></li>
+        </ul>
+      </div>
+
+      <!-- Diagnostics & Geek Tools -->
+      <div class="col">
+        <div class="h"><span class="dot">🧠</span><span>Diagnostics & Geek Tools</span></div>
+        <ul>
+          <li><a href="https://whoer.net/" target="_blank" rel="noopener">
+            <span><strong>Whoer</strong><div class="desc">Browser fingerprint & VPN/proxy detection</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://gtmetrix.com/" target="_blank" rel="noopener">
+            <span><strong>GTmetrix</strong><div class="desc">Measure page load performance</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://downforeveryoneorjustme.com/" target="_blank" rel="noopener">
+            <span><strong>Down for Everyone or Just Me</strong><div class="desc">Is a site actually down?</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://packetlosstest.com/" target="_blank" rel="noopener">
+            <span><strong>Packet Loss Test</strong><div class="desc">Line stability test</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://www.ssllabs.com/ssltest/" target="_blank" rel="noopener">
+            <span><strong>SSL Labs</strong><div class="desc">Deep SSL/TLS analysis</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://crt.sh/" target="_blank" rel="noopener">
+            <span><strong>crt.sh</strong><div class="desc">Certificate Transparency search</div></span><span class="arrow">↗</span></a></li>
+          <li><a href="https://www.digicert.com/help/" target="_blank" rel="noopener">
+            <span><strong>DigiCert Help</strong><div class="desc">Quick certificate lookup</div></span><span class="arrow">↗</span></a></li>
+        </ul>
       </div>
     </section>
 
-    <footer>Made for Keith • Minimal, fast, bookmarkable</footer>
-  </main>
+    <footer>
+      <a class="home" href="/">← Back to Home</a>
+    </footer>
+  </div>
 </body>
 </html>
